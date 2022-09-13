@@ -1,7 +1,11 @@
 from fileinput import filename
+from flask import Flask
 from pyDF import *
 import os
 import time
+
+app = Flask(__name__)
+
 
 sourcePath = str(os.path.dirname(os.path.realpath(__file__))) + "/sources"
 savePath = "sortedFiles"
@@ -85,8 +89,8 @@ def saveSortedList(args):
     #fileName = sourcesList(sourcePath)[0]
     splitName = fileName.split('/')[-1]
     listsToSort = getList(fileName)
-    # sort(listsToSort)
-    selectionSort(listsToSort, len(listsToSort))
+    sort(listsToSort)
+    # selectionSort(listsToSort, len(listsToSort))
 
     saveList(listsToSort, splitName)
 
@@ -101,7 +105,8 @@ def printSortedList(args):
 
     print("Sorted Files %s" %fileName)
 
-def main(nprocs):
+@app.route('/')
+def main(nprocs=5):
 
     sources = sourcesList(sourcePath)
 
@@ -124,7 +129,8 @@ def main(nprocs):
     t1 = time.time()
 
     print("Time: %.3f" %(t1-t0))
+    return "Time: %.3f" %(t1-t0)
 
-main(int(sys.argv[1]))
+# main(int(sys.argv[1]))
 # main(1)
 
