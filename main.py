@@ -105,9 +105,11 @@ def printSortedList(args):
 
     print("Sorted Files %s" %fileName)
 
-@app.route('/')
-def main(nprocs=5):
-
+@app.route('/<nprocs>')
+def main(nprocs):
+    
+    nprocs = int(nprocs)
+    
     sources = sourcesList(sourcePath)
 
     graph = DFGraph()
