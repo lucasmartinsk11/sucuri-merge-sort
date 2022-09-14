@@ -89,8 +89,8 @@ def saveSortedList(args):
     #fileName = sourcesList(sourcePath)[0]
     splitName = fileName.split('/')[-1]
     listsToSort = getList(fileName)
-    sort(listsToSort)
-    # selectionSort(listsToSort, len(listsToSort))
+    # sort(listsToSort)
+    selectionSort(listsToSort, len(listsToSort))
 
     saveList(listsToSort, splitName)
 
@@ -109,7 +109,7 @@ def printSortedList(args):
 def main(nprocs):
     
     nprocs = int(nprocs)
-    
+
     sources = sourcesList(sourcePath)
 
     graph = DFGraph()
